@@ -5,7 +5,7 @@ class EventMachine::SFlow::RawPacketHeader
     data.extend EventMachine::SFlow::BinaryString
     
     @protocol, @frame_length, @strip_count, length = data.unpack("NNNN")
-    data.advance(4)
+    data.advance(16)
     
     @header = data
   end
