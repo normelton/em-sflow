@@ -2,7 +2,7 @@
 
 == Summary
 
-This gem collects, parses, and optionally proxies sampled flow records from network switches and routers. For information about sFlow, refer to www.sflow.org[http://www.sflow.org].
+This gem collects, parses, and optionally proxies sampled flow records from network switches and routers. For information about sFlow, refer to http://www.sflow.org.
 
 == Features
 
@@ -17,31 +17,26 @@ Version 1.0.0
 
 Collector:
 
-  EM.run {
-    c = EventMachine::SFlow::Collector.new(:host => "127.0.0.1")
+  c = EventMachine::SFlow::Collector.new(:host => "127.0.0.1")
 
-    c.on_sflow do |pkt|
-      puts "Got #{pkt.samples.count} samples"
+  c.on_sflow do |pkt|
+    puts "Got #{pkt.samples.count} samples"
 
-      pkt.samples.each do |sample|
-        sample.records.each do |record|
-          if record.is_a? EM::SFlow::RawPacketHeader
-            puts "Received a sampled packet from #{pkt.agent} of length #{record.header.size}"
-          elsif record.is_a? EM::SFlow::GenericInterfaceCounters
-            puts "Interface #{record.if_index} on #{pkt.agent} has seen #{record.if_in_octets} inbound bytes, #{record.if_out_octets} outbound bytes"
-          end
+    pkt.samples.each do |sample|
+      sample.records.each do |record|
+        if record.is_a? EM::SFlow::RawPacketHeader
+          puts "Received a sampled packet from #{pkt.agent} of length #{record.header.size}"
+        elsif record.is_a? EM::SFlow::GenericInterfaceCounters
+          puts "Interface #{record.if_index} on #{pkt.agent} has seen #{record.if_in_octets} inbound bytes, #{record.if_out_octets} outbound bytes"
         end
       end
     end
-  }
+  end
 
 Proxy:
 
-  EM.run {
-    c = EventMachine::SFlow::Collector.new(:host => "127.0.0.1")
-    
-    c.proxy_to "192.168.1.1"
-  }
+  c = EventMachine::SFlow::Collector.new(:host => "127.0.0.1")
+  c.proxy_to "192.168.1.1"
   
 Multiple callbacks and proxy targets can be defined simultaneously
 
