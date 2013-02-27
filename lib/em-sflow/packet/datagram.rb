@@ -37,7 +37,7 @@ class EventMachine::SFlow::Datagram
       elsif enterprise == 0 && format == 2  
         @samples << EM::SFlow::CounterSample.new(sample_data)
       elsif enterprise == 0 && format == 3
-        # @samples << EM::SFlow::ExpandedFlowSample.new(sample_data)
+        @samples << EM::SFlow::ExpandedFlowSample.new(sample_data)
       elsif enterprise == 0 && format == 4
         # @samples << EM::SFlow::ExpandedCounterSample.new(sample_data)
       end
