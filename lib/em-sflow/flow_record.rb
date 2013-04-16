@@ -18,9 +18,9 @@ module EventMachine
           elsif enterprise == 0 && format == 2
             # records << EM::SFlow::EthernetFrameData.new(record_data)
           elsif enterprise == 0 && format == 3
-            # records << EM::SFlow::IPv4Data.new(record_data)
+            records << EM::SFlow::IPv4Data.new(record_data)
           elsif enterprise == 0 && format == 4
-            # records << EM::SFlow::IPv6Data.new(record_data)
+            records << EM::SFlow::IPv6Data.new(record_data)
           elsif enterprise == 0 && format == 1001
             # records << EM::SFlow::ExtendedSwitchData.new(record_data)
           elsif enterprise == 0 && format == 1002

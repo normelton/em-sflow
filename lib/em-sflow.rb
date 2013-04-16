@@ -14,6 +14,8 @@ require "em-sflow/packet/counter_sample"
 require "em-sflow/packet/raw_packet_header"
 require "em-sflow/packet/generic_interface_counters"
 require "em-sflow/packet/ethernet_interface_counters"
+require "em-sflow/packet/ipv4_data"
+require "em-sflow/packet/ipv6_data"
 
 module EventMachine
   module SFlow
